@@ -1,12 +1,16 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const http = require('http');
 
+//Route files
+const cases = require('./routes/cases');
 
 //load env vars
 dotenv.config({  path: './config/config.env' });
 
 const app = express();
+
+//Mount router
+app.use('/api/v1/cases', cases);
 
 const PORT = process.env.PORT || 5000;
 
