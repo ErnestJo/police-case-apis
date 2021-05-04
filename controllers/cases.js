@@ -30,6 +30,10 @@ exports.getCase =  async  (req, res, next) => {
     try {
         const cas = await Case.findById(req.params.id);
 
+        if (!cas) {
+           return res.status(400).json({ success: false });
+        }
+
         res.status(200).json({
             success: true,
             data: cas,
