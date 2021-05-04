@@ -99,6 +99,25 @@ exports.updateCase = async (req, res, next) => {
 // @desc      delete case
 // @route     delete case/api/v1/cases/:id
 // @access    system Users
-exports.deleteCase = (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Delete case ${req.params.id}` });
+exports.deleteCase = async (req, res, next) => {
+
+    try {
+      
+        const cas = await Case.findByIdAndDelete(req.params.id);
+    
+    
+        if (!cas) {
+            return res.status(400).json({ success: false });
+        }
+    
+        res.status(201).json({
+            success: true,
+            data: {}
+        });
+        
+      } catch (err) {
+        res.status(400).json({
+            success: false
+        });
+      } 
 }
