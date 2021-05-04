@@ -3,9 +3,23 @@ const Case = require('../models/Case');
 // @desc      Get all Cases
 // @route     Get /api/v1/cases
 // @access    system Users
-exports.getCases = (req, res, next) => {
-    res.status(200).json({ success: true, msg: 'show all cases' });
-}
+exports.getCases = async (req, res, next) => {
+    
+    try {
+        const casess = await Case.find();
+
+        res.status(200).json({
+            success: true,
+            data: casess,
+            count: true
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false
+        });
+    }
+    
+};
 
 
 // @desc      Get single Cases
