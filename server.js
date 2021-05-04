@@ -17,6 +17,10 @@ const cases = require('./routes/cases');
 
 
 const app = express();
+  
+// Body parser
+app.use(express.json());
+
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
@@ -35,7 +39,7 @@ const server = app.listen(
 
   // handle unhandle promise rejection
   process.on('unhandledRejection', (err, Promise) => {
-    console.log(`Error: ${err.message}`.red);
+    console.log(`Error: ${err.message}`);
     // close down the server
     server.close(() => process.exit(1));
   

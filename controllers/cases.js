@@ -1,3 +1,4 @@
+const Case = require('../models/Case');
 
 // @desc      Get all Cases
 // @route     Get /api/v1/cases
@@ -16,10 +17,21 @@ exports.getCase = (req, res, next) => {
 
 // @desc      create Cases
 // @route     Post /api/v1/cases
-// @access    system Users
-exports.createCase = (req, res, next) => {
-    res.status(200).json({ success: true, msg: 'Create a case' });
-}
+// @access    system Userscase
+exports.createCase = async (req, res, next) => {
+    try {
+        const cases = await Case.create(req.body);
+
+    res.status(201).json({
+        success: true,
+        data: cases
+    });
+    } catch (err) {
+        res.status(400).json({
+            success: false
+        });
+   }
+};
 
 
 
