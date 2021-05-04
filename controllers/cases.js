@@ -10,8 +10,9 @@ exports.getCases = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            data: casess,
-            count: true
+            count: casess.length,
+            data: casess
+            
         })
     } catch (err) {
         res.status(400).json({
