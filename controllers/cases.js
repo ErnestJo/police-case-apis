@@ -25,8 +25,22 @@ exports.getCases = async (req, res, next) => {
 // @desc      Get single Cases
 // @route     Get /api/v1/cases/:id
 // @access    system Users
-exports.getCase = (req, res, next) => {
-    res.status(200).json({ success: true, msg: `show case ${req.params.id}`});
+exports.getCase =  async  (req, res, next) => {
+
+    try {
+        const cas = await Case.findById(req.params.id);
+
+        res.status(200).json({
+            success: true,
+            data: cas,
+            
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false
+        });
+    }
+   
 }
 
 // @desc      create Cases
