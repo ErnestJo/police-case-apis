@@ -70,9 +70,24 @@ exports.createCase = async (req, res, next) => {
 // @desc      Update case
 // @route     Update or put /api/v1/cases/:id
 // @access    system Users
-exports.updateCase = (req, res, next) => {
-    res.status(200).json({ success: true, msg:`Update case ${req.params.id}` });
-}
+exports.updateCase = async (req, res, next) => {
+    const cas = await Case.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+    });
+
+
+    if (!cas) {
+        return res.status(400).json({ success: false });
+    }
+
+    
+    res.status(201).json({
+        success: true,
+        data: cas
+    }); 
+     
+};
 
 // @desc      delete case
 // @route     delete case/api/v1/cases/:id
