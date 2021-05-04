@@ -71,6 +71,8 @@ exports.createCase = async (req, res, next) => {
 // @route     Update or put /api/v1/cases/:id
 // @access    system Users
 exports.updateCase = async (req, res, next) => {
+  try {
+      
     const cas = await Case.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true
@@ -87,6 +89,11 @@ exports.updateCase = async (req, res, next) => {
         data: cas
     }); 
      
+  } catch (err) {
+    res.status(400).json({
+        success: false
+    });
+  }
 };
 
 // @desc      delete case
