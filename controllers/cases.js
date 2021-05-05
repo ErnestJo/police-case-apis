@@ -1,12 +1,13 @@
 const Case = require('../models/Case');
+const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
+
 
 // @desc      Get all Cases
 // @route     Get /api/v1/cases
 // @access    system Users
-exports.getCases = async (req, res, next) => {
+exports.getCases = asyncHandler (async (req, res, next) => {
     
-    try {
         const casess = await Case.find();
 
         res.status(200).json({
@@ -15,20 +16,16 @@ exports.getCases = async (req, res, next) => {
             data: casess
             
         })
-    } catch (err) {
-        next(err);
-    }
-    
-};
+   
+});
 
 
 // @desc      Get single Cases
 // @route     Get /api/v1/cases/:id
 // @access    system Users
-exports.getCase =  async  (req, res, next) => {
+exports.getCase = asyncHandler(async (req, res, next) => {
 
-    try {
-        const cas = await Case.findById(req.params.id);
+ const cas = await Case.findById(req.params.id);
 
         if (!cas) {
             return next(
@@ -36,40 +33,36 @@ exports.getCase =  async  (req, res, next) => {
             );
         }
 
-        res.status(200).json({
-            success: true,
-            data: cas,
+    res.status(200).json({
+        success: true,
+        data: cas,
             
-        })
-    } catch (err) {
-        next(err);
-    }
+    });
+    
    
-}
+});
 
 // @desc      create Cases
 // @route     Post /api/v1/cases
 // @access    system Userscase
-exports.createCase = async (req, res, next) => {
-    try {
+exports.createCase = asyncHandler(async (req, res, next) => {
+   
         const cases = await Case.create(req.body);
 
     res.status(201).json({
         success: true,
         data: cases
     });
-    } catch (err) {
-        next(err);
-   }
-};
+   
+});
 
 
 
 // @desc      Update case
 // @route     Update or put /api/v1/cases/:id
 // @access    system Users
-exports.updateCase = async (req, res, next) => {
-  try {
+exports.updateCase = asyncHandler(async (req, res, next) => {
+
       
     const cas = await Case.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -89,17 +82,13 @@ exports.updateCase = async (req, res, next) => {
         data: cas
     }); 
      
-  } catch (err) {
-    next(err);
-  }
-};
+ 
+});
 
 // @desc      delete case
 // @route     delete case/api/v1/cases/:id
 // @access    system Users
-exports.deleteCase = async (req, res, next) => {
-
-    try {
+exports.deleteCase = asyncHandler(async (req, res, next) => {
       
         const cas = await Case.findByIdAndDelete(req.params.id);
     
@@ -115,7 +104,4 @@ exports.deleteCase = async (req, res, next) => {
             data: {}
         });
         
-      } catch (err) {
-        next(err);
-      } 
-}
+});
