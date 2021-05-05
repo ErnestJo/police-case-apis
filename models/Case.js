@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-const CaseSchema = new mongoose.Schema({
+const slugify = required('slugify');
+
+  const CaseSchema = new mongoose.Schema({
 
   name: {
     type: String,
@@ -82,7 +84,16 @@ const CaseSchema = new mongoose.Schema({
   finalDisposal: {
     type:String
   },
+  });
+
+
+
+    // create a slug for slug name
+CaseSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
 });
 
 module.exports = mongoose.model('case', CaseSchema);
 
+ 
