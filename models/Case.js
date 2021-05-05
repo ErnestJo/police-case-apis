@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const CaseSchema = new mongoose.Schema({
 
-
   name: {
     type: String,
     required: [true, 'Please add a name'],
@@ -71,13 +70,19 @@ const CaseSchema = new mongoose.Schema({
     maxlength: [50, 'Name can not be more than 50 characters']
   },
   
+    arrested: {
+        type: Boolean,
+        default: false
+  },
   policeOfficeTakingIntialAction: {
     type: String
   },
-
+   
+  
   finalDisposal: {
     type:String
   },
 });
 
 module.exports = mongoose.model('case', CaseSchema);
+

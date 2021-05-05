@@ -1,4 +1,5 @@
 const Case = require('../models/Case');
+const ErrorResponse = require('../utils/errorResponse');
 
 // @desc      Get all Cases
 // @route     Get /api/v1/cases
@@ -15,9 +16,7 @@ exports.getCases = async (req, res, next) => {
             
         })
     } catch (err) {
-        res.status(400).json({
-            success: false
-        });
+        next(err);
     }
     
 };
@@ -32,7 +31,9 @@ exports.getCase =  async  (req, res, next) => {
         const cas = await Case.findById(req.params.id);
 
         if (!cas) {
-           return res.status(400).json({ success: false });
+            return next(
+                new ErrorResponse(`Case not found with id of ${req.params.id}`, 404)
+            );
         }
 
         res.status(200).json({
@@ -41,9 +42,7 @@ exports.getCase =  async  (req, res, next) => {
             
         })
     } catch (err) {
-        res.status(400).json({
-            success: false
-        });
+        next(err);
     }
    
 }
@@ -60,9 +59,7 @@ exports.createCase = async (req, res, next) => {
         data: cases
     });
     } catch (err) {
-        res.status(400).json({
-            success: false
-        });
+        next(err);
    }
 };
 
@@ -81,7 +78,9 @@ exports.updateCase = async (req, res, next) => {
 
 
     if (!cas) {
-        return res.status(400).json({ success: false });
+        return next(
+            new ErrorResponse(`Case not found with id of ${req.params.id}`, 404)
+        );
     }
 
     
@@ -91,9 +90,7 @@ exports.updateCase = async (req, res, next) => {
     }); 
      
   } catch (err) {
-    res.status(400).json({
-        success: false
-    });
+    next(err);
   }
 };
 
@@ -108,7 +105,9 @@ exports.deleteCase = async (req, res, next) => {
     
     
         if (!cas) {
-            return res.status(400).json({ success: false });
+            return next(
+                new ErrorResponse(`Case not found with id of ${req.params.id}`, 404)
+            );
         }
     
         res.status(201).json({
@@ -117,8 +116,6 @@ exports.deleteCase = async (req, res, next) => {
         });
         
       } catch (err) {
-        res.status(400).json({
-            success: false
-        });
+        next(err);
       } 
 }
