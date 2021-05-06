@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const slugify = required('slugify');
+const slugify = require('slugify');
 
   const CaseSchema = new mongoose.Schema({
 
