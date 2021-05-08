@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const CaseSchema = new mongoose.Schema({
+const slugify = require('slugify');
 
+  const CaseSchema = new mongoose.Schema({
 
   name: {
     type: String,
@@ -71,13 +72,28 @@ const CaseSchema = new mongoose.Schema({
     maxlength: [50, 'Name can not be more than 50 characters']
   },
   
+    arrested: {
+        type: Boolean,
+        default: false
+  },
   policeOfficeTakingIntialAction: {
     type: String
   },
-
+   
+  
   finalDisposal: {
     type:String
   },
+  });
+
+
+
+    // create a slug for slug name
+CaseSchema.pre('save', function (next) {
+  this.slug = slugify(this.name, { lower: true });
+  next();
 });
 
 module.exports = mongoose.model('case', CaseSchema);
+
+ 
