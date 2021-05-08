@@ -1,0 +1,122 @@
+[
+	
+        {
+            "_id": "5d725a4a7b292f5f8ceff789",
+            "name": "Josia Nombo",
+            "age": 24,
+            "phone": "(111) 111-1111",
+            "gender": "Male",
+            "occupation": "Mkulima",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d713995b721c3bb38c1f5d0"
+            
+        },
+        
+        
+        {
+            "_id": "5d725c84c4ded7bcb480eaa0",
+            "name": "kibe Mafuta",
+            "age": 32,
+            "phone": "(111) 111-1111",
+            "gender": "Male",
+            "occupation": "hana kazi",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d713995b721c3bb38c1f5d0"
+            
+        },
+        
+        {
+            "_id": "5d725cb9c4ded7bcb480eaa1",
+            "name": "Kelvin Mndeme",
+            "age": 43,
+            "phone": "(111) 111-1111",
+            "gender": "Male",
+            "occupation": "Mkulima",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d713a66ec8f2b88b8f830b8"
+            
+        },
+        
+        {
+            "_id": "5d725cd2c4ded7bcb480eaa2",
+            "name": "oliwali Musa",
+            "age": 26,
+            "phone": "(222) 332-43561",
+            "gender": "female",
+            "occupation": "Mkulima",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d713a66ec8f2b88b8f830b8"
+            
+        },
+        
+        {
+            "_id": "5d725ce8c4ded7bcb480eaa3",
+            "name": "Christopher James",
+            "age": 23,
+            "phone": "(111) 111-1111",
+            "gender": "female",
+            "occupation": "Mkulima",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d725a037b292f5f8ceff787"
+            
+        },
+        
+        {
+            "_id": "5d725cfec4ded7bcb480eaa4",
+            "name": "kelly Shija",
+            "age": 53,
+            "phone": "(111) 111-1111",
+            "gender": "Female",
+            "occupation": "Mkulima",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d725a037b292f5f8ceff787"
+            
+        },
+        
+        {
+            "_id": "5d725cfec4ded7bcb480eaa5",
+            "name": "king Jobrey",
+            "age": 14,
+            "phone": "(111) 111-1111",
+            "gender": "Male",
+            "occupation": "mfugaji",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d725a1b7b292f5f8ceff788"
+            
+        },
+        
+        {
+            "_id": "5d725cfec4ded7bcb480eaa6",
+            "name": "Mwali kali",
+            "age": 43,
+            "phone": "(111) 111-1111",
+            "gender": "Female",
+            "occupation": "mwalimu",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d725a1b7b292f5f8ceff788"
+            
+        },
+        {
+            "_id": "5d725cfec4ded7bcb480eaa7",
+            "name": "fesi kapi",
+            "age": 23,
+            "phone": "(323) 122-4444",
+            "gender": "Female",
+            "occupation": "mjumbe",
+            "nationalilty": "Mtanzania",
+            "properties": "Saa, hela shilingi elfu 50",
+            "case": "5d725a1b7b292f5f8ceff788"
+            
+        }
+            
+        
+ ]
+        
