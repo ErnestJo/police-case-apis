@@ -4,7 +4,7 @@ const {
     getAccusers
     } = require('../controllers/accusers');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router.route('/').get(getAccusers);
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+const Accuser = require('./Accuser');
 
   const CaseSchema = new mongoose.Schema({
 
@@ -84,14 +85,25 @@ const slugify = require('slugify');
   finalDisposal: {
     type:String
   },
+  },
+    {
+      toJSON: { virtuals: true },
+      toObject:{ virtuals: true }
   });
-
-
 
     // create a slug for slug name
 CaseSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
+});
+
+
+// Reverse populate with vituals
+CaseSchema.virtual('accusers', {
+  ref: 'Accuser',
+  localField: '_id',
+  foreignField: 'case',
+  justOne: false
 });
 
 module.exports = mongoose.model('case', CaseSchema);

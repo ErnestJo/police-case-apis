@@ -48,7 +48,7 @@ const accuserSchema = new mongoose.Schema({
   
   case: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Case',
+    ref: 'case',
     required: true,
   }
 

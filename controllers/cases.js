@@ -30,7 +30,7 @@ exports.getCases = asyncHandler (async (req, res, next) => {
 
 
     //finding resoucers
-    query = Case.find(JSON.parse(queryStr));
+    query = Case.find(JSON.parse(queryStr)).populate('accusers');
 
     //select Fields
     if (req.query.select) {
