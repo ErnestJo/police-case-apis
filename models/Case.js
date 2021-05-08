@@ -87,7 +87,7 @@ const Accuser = require('./Accuser');
   },
   },
     {
-      toJSON: { virtuals: true },
+      toJSON: { virtuals: true }, 
       toObject:{ virtuals: true }
   });
 
@@ -97,6 +97,11 @@ CaseSchema.pre('save', function (next) {
   next();
 });
 
+// Cascade delete 
+CaseSchema.pre('remove', async function (next) {
+  await this.model('Accuser').deleteMany({ case: this._id });
+  next();
+});
 
 // Reverse populate with vituals
 CaseSchema.virtual('accusers', {
