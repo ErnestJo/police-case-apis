@@ -5,6 +5,10 @@ const { getCases,
     updateCase,
     deleteCase } = require('../controllers/cases');
 
+const Case = require('../models/Case');
+
+const advancedResults = require('../middleware/advancedResults');
+
 //include other resource routers
 const accuserRouter = require('./accusers');
 
@@ -14,7 +18,7 @@ const router = express.Router();
 router.use('/:caseId/accusers', accuserRouter);
 
 router.route('/')
-     .get(getCases)
+     .get(advancedResults(Case, 'accusers'),getCases)
      .post(createCase);
      
 router
