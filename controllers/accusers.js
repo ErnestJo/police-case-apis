@@ -53,3 +53,29 @@ exports.getAccuser = asyncHandler(async (req, res, next) => {
     });
 
 });
+
+
+
+// @desc      add  Accuser
+// @route     GET /api/v1/accusers/:id
+// @route     GET /api/v1/case/:caseId/accusers
+// @access    not public
+exports.addAccuser = asyncHandler(async (req, res, next) => {
+    req.body.case = req.params.caseId;
+
+    const cas = await Case.findById(req.params.caseId)
+
+    if (!cas) {
+        return next(new ErrorResponse(`No Case with such id of ${req.params.caseId}`), 404);
+    }
+
+    const accuser = await Accuser.create(req.body);
+    
+
+
+    res.status(200).json({
+        success: true,
+        data: accuser
+    });
+
+});
