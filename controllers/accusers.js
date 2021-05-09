@@ -57,8 +57,7 @@ exports.getAccuser = asyncHandler(async (req, res, next) => {
 
 
 // @desc      add  Accuser
-// @route     GET /api/v1/accusers/:id
-// @route     GET /api/v1/case/:caseId/accusers
+// @route     POST /api/v1/case/:caseId/accusers
 // @access    not public
 exports.addAccuser = asyncHandler(async (req, res, next) => {
     req.body.case = req.params.caseId;
@@ -76,6 +75,56 @@ exports.addAccuser = asyncHandler(async (req, res, next) => {
     res.status(200).json({
         success: true,
         data: accuser
+    });
+
+});
+
+
+
+// @desc      Upadte   Accuser
+// @route     PUT /api/v1/accusers/:id 
+// @access    not public
+exports.UpdateAccuser = asyncHandler(async (req, res, next) => {
+
+    let accuser = await Accuser.findById(req.params.id)
+
+    if (!accuser) {
+        return next(new ErrorResponse(`No Accuser with such id of ${req.params.caseId}`), 404);
+    }
+
+    accuser = await Accuser.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators:true
+     });
+    
+
+
+    res.status(200).json({
+        success: true,
+        data: accuser
+    });
+
+});
+
+
+// @desc      Delete   Accuser
+// @route     DELETE /api/v1/accusers/:id 
+// @access    not public
+exports.deleteAccuser = asyncHandler(async (req, res, next) => {
+
+    const accuser = await Accuser.findById(req.params.id)
+
+    if (!accuser) {
+        return next(new ErrorResponse(`No Accuser with such id of ${req.params.caseId}`), 404);
+    }
+
+    await accuser.remove();
+    
+
+
+    res.status(200).json({
+        success: true,
+        data: {}
     });
 
 });

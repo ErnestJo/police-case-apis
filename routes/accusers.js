@@ -3,7 +3,9 @@ const express = require('express');
 const {
     getAccusers,
     getAccuser,
-    addAccuser
+    addAccuser,
+    UpdateAccuser,
+    deleteAccuser
     } = require('../controllers/accusers');
 
 const router = express.Router({ mergeParams: true });
@@ -13,6 +15,8 @@ router.route('/')
     .post(addAccuser);
 
 router.route('/:id')
-    .get(getAccuser);
+    .get(getAccuser)
+    .put(UpdateAccuser)
+    .delete(deleteAccuser);
 
 module.exports = router;
