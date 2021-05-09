@@ -32,3 +32,24 @@ exports.getAccusers = asyncHandler(async (req, res, next) => {
 
 });
 
+
+// @desc      Get Accuser
+// @route     GET /api/v1/accusers/:id
+// @route     GET /api/v1/case/:caseId/accusers
+// @access    not public
+exports.getAccuser = asyncHandler(async (req, res, next) => {
+    const accuser = await Accuser.findById(req.params.id).populate({
+         path: 'case',
+         select: 'name description'
+   })
+
+    if (!accuser) {
+        return next(new ErrorResponse(`No Accuser with such ${req.params.id}`), 404);
+    }
+
+    res.status(200).json({
+        success: true,
+        data: accuser
+    });
+
+});
