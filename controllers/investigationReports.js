@@ -76,27 +76,26 @@ exports.addir = asyncHandler(async (req, res, next) => {
 
 
 
-// @desc      Upadte   Accuser
-// @route     PUT /api/v1/accusers/:id 
+// @desc      Upadte   Ir
+// @route     PUT /api/v1/investigationReports/:id 
 // @access    not public
 exports.UpdateIr = asyncHandler(async (req, res, next) => {
 
-    let accuser = await Accuser.findById(req.params.id)
+    let ireport = await InvestigationReport.findById(req.params.id)
 
     if (!accuser) {
-        return next(new ErrorResponse(`No Accuser with such id of ${req.params.caseId}`), 404);
+        return next(new ErrorResponse(`No Investigation Report with such id of ${req.params.caseId}`), 404);
     }
 
-    accuser = await Accuser.findByIdAndUpdate(req.params.id, req.body, {
+    ireport = await InvestigationReport.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators:true
      });
     
 
-
     res.status(200).json({
         success: true,
-        data: accuser
+        data: ireport
     });
 
 });
