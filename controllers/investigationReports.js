@@ -3,7 +3,6 @@ const accusers = require('../models/Accuser')
 const asyncHandler = require('../middleware/async');
 const { query } = require('express');
 const ErrorResponse = require('../utils/errorResponse');
-const Accuser = require('../models/Accuser');
 const advancedResults = require('../middleware/advancedResults');
 
 
@@ -56,7 +55,7 @@ exports.getIr = asyncHandler(async (req, res, next) => {
 // @desc      add  Ir
 // @route     POST /api/v1/case/:caseId/investigationReports
 // @access    not public
-exports.addir = asyncHandler(async (req, res, next) => {
+exports.addIr = asyncHandler(async (req, res, next) => {
     req.body.case = req.params.caseId;
 
     const cas = await Case.findById(req.params.caseId)
@@ -101,7 +100,7 @@ exports.UpdateIr = asyncHandler(async (req, res, next) => {
 });
 
 
-// @desc      Delete   Accuser
+// @desc      Delete   Ir
 // @route     DELETE /api/v1/investigationReports/:id 
 // @access    not public
 exports.deleteIr = asyncHandler(async (req, res, next) => {

@@ -1,29 +1,29 @@
 const express = require('express');
 
 const {
-    getAccusers,
-    getAccuser,
-    addAccuser,
-    UpdateAccuser,
-    deleteAccuser
-} = require('../controllers/accusers');
+    getIrs,
+    getIr,
+    addIr,
+    UpdateIr,
+    deleteIr
+} = require('../controllers/investigationReports');
 const Case = require('../models/Case');
 
 const advancedResults = require('../middleware/advancedResults');
-const Accuser = require('../models/Accuser');
+const Ir = require('../models/InvestigationReport');
 
 const router = express.Router({ mergeParams: true });
 
 router.route('/')
-    .get(advancedResults(Accuser, {
+    .get(advancedResults(Ir, {
         path: 'case',
         select: 'name description'
-    }),getAccusers)
-    .post(addAccuser);
+    }),getIrs)
+    .post(addIr);
 
 router.route('/:id')
-    .get(getAccuser)
-    .put(UpdateAccuser)
-    .delete(deleteAccuser);
+    .get(getIr)
+    .put(UpdateIr)
+    .delete(deleteIr);
 
 module.exports = router;

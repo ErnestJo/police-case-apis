@@ -103,9 +103,23 @@ CaseSchema.pre('remove', async function (next) {
   next();
 });
 
-// Reverse populate with vituals
+// Cascade delete 
+CaseSchema.pre('remove', async function (next) {
+  await this.model('InvestigationReports').deleteMany({ case: this._id });
+  next();
+});
+
+// Reverse populate with vituals accusers
 CaseSchema.virtual('accusers', {
   ref: 'Accuser',
+  localField: '_id',
+  foreignField: 'case',
+  justOne: false
+});
+
+// Reverse populate with vituals ir
+CaseSchema.virtual('investigationReports', {
+  ref: 'InvestigationReports',
   localField: '_id',
   foreignField: 'case',
   justOne: false

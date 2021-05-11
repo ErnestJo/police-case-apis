@@ -59,4 +59,5 @@ const investigationReportSchema = new mongoose.Schema({
 });
 
 
+
 module.exports = mongoose.model('InvestigationReport', investigationReportSchema);
