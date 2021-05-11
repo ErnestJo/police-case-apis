@@ -3,7 +3,6 @@ const accusers = require('../models/Accuser')
 const asyncHandler = require('../middleware/async');
 const { query } = require('express');
 const ErrorResponse = require('../utils/errorResponse');
-const Accuser = require('../models/Accuser');
 const advancedResults = require('../middleware/advancedResults');
 
 
@@ -101,7 +100,7 @@ exports.UpdateIr = asyncHandler(async (req, res, next) => {
 });
 
 
-// @desc      Delete   Accuser
+// @desc      Delete   Ir
 // @route     DELETE /api/v1/investigationReports/:id 
 // @access    not public
 exports.deleteIr = asyncHandler(async (req, res, next) => {
