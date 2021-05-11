@@ -53,8 +53,8 @@ exports.getIr = asyncHandler(async (req, res, next) => {
 
 
 
-// @desc      add  Accuser
-// @route     POST /api/v1/case/:caseId/accusers
+// @desc      add  Ir
+// @route     POST /api/v1/case/:caseId/investigationReports
 // @access    not public
 exports.addir = asyncHandler(async (req, res, next) => {
     req.body.case = req.params.caseId;
@@ -65,13 +65,11 @@ exports.addir = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`No Case with such id of ${req.params.caseId}`), 404);
     }
 
-    const accuser = await Accuser.create(req.body);
+    const ireport = await InvestigationReport.create(req.body);
     
-
-
-    res.status(200).json({
+        res.status(200).json({
         success: true,
-        data: accuser
+        data: ireport
     });
 
 });
