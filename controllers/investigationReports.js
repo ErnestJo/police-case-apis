@@ -55,7 +55,7 @@ exports.getIr = asyncHandler(async (req, res, next) => {
 // @desc      add  Ir
 // @route     POST /api/v1/case/:caseId/investigationReports
 // @access    not public
-exports.addir = asyncHandler(async (req, res, next) => {
+exports.addIr = asyncHandler(async (req, res, next) => {
     req.body.case = req.params.caseId;
 
     const cas = await Case.findById(req.params.caseId)
