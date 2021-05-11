@@ -83,7 +83,7 @@ exports.UpdateIr = asyncHandler(async (req, res, next) => {
 
     let ireport = await InvestigationReport.findById(req.params.id)
 
-    if (!accuser) {
+    if (!ireport) {
         return next(new ErrorResponse(`No Investigation Report with such id of ${req.params.caseId}`), 404);
     }
 
