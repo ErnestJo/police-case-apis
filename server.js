@@ -16,6 +16,7 @@ connectDB();
 //Route files
 const cases = require('./routes/cases');
 const accusers = require('./routes/accusers');
+const irs = require('./routes/investigationReports');
 
 
 
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'development') {
 //Mount router
 app.use('/api/v1/cases', cases);
 app.use('/api/v1/accusers', accusers);
+app.use('/api/v1/investigationReports', irs);
 
 app.use(errorHandler);
 
