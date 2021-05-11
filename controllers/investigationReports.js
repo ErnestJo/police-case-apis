@@ -102,17 +102,17 @@ exports.UpdateIr = asyncHandler(async (req, res, next) => {
 
 
 // @desc      Delete   Accuser
-// @route     DELETE /api/v1/accusers/:id 
+// @route     DELETE /api/v1/investigationReports/:id 
 // @access    not public
 exports.deleteIr = asyncHandler(async (req, res, next) => {
 
-    const accuser = await Accuser.findById(req.params.id)
+    const ireport = await InvestigationReport.findById(req.params.id)
 
-    if (!accuser) {
-        return next(new ErrorResponse(`No Accuser with such id of ${req.params.caseId}`), 404);
+    if (!ireport) {
+        return next(new ErrorResponse(`No Investigation Report with such id of ${req.params.caseId}`), 404);
     }
 
-    await accuser.remove();
+    await ireport.remove();
     
 
 
