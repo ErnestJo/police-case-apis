@@ -17,7 +17,7 @@ connectDB();
 const cases = require('./routes/cases');
 const accusers = require('./routes/accusers');
 const investigationReports = require('./routes/investigationReports');
-
+const auth = require('./routes/auth');
 
 
 const app = express();
@@ -35,6 +35,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/v1/cases', cases);
 app.use('/api/v1/accusers', accusers);
 app.use('/api/v1/investigationReports', investigationReports);
+app.use('/api/v1/auth', auth);
+
 
 app.use(errorHandler);
 
