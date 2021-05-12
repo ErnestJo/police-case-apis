@@ -10,12 +10,12 @@ const {
 const Case = require('../models/Case');
 
 const advancedResults = require('../middleware/advancedResults');
-const Ir = require('../models/InvestigationReport');
+const InvestigationReport = require('../models/InvestigationReport');
 
 const router = express.Router({ mergeParams: true });
 
 router.route('/')
-    .get(advancedResults(Ir, {
+    .get(advancedResults(InvestigationReport, {
         path: 'case',
         select: 'name description'
     }),getIrs)

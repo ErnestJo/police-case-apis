@@ -1,4 +1,5 @@
 const Case = require('../models/Case');
+const InvestigationReport = require('../models/InvestigationReport');
 const accusers = require('../models/Accuser')
 const asyncHandler = require('../middleware/async');
 const { query } = require('express');
@@ -13,15 +14,14 @@ const advancedResults = require('../middleware/advancedResults');
 // @access    not bublic
 exports.getIrs = asyncHandler(async (req, res, next) => {
     
-
     if (req.params.caseId) {
-        const ireports =  await InvestigationReport.find({ case: req.params.caseId });
-    
-    
+
+        const ireportss =  await InvestigationReport.find({ case: req.params.caseId });
+        
         res.status(200).json({
             success: true,
-            count: ireports.length,
-            data: ireports
+            count: ireportss.length,
+            data: ireportss
         });
     } else {
         res.status(200).json(res.advancedResults);
@@ -34,6 +34,7 @@ exports.getIrs = asyncHandler(async (req, res, next) => {
 // @route     GET /api/v1/investigationReports/:id
 // @access    not public
 exports.getIr = asyncHandler(async (req, res, next) => {
+
     const ireport = await InvestigationReport.findById(req.params.id).populate({
          path: 'case',
          select: 'name description'
@@ -91,7 +92,6 @@ exports.UpdateIr = asyncHandler(async (req, res, next) => {
         runValidators:true
      });
     
-
     res.status(200).json({
         success: true,
         data: ireport
@@ -113,8 +113,6 @@ exports.deleteIr = asyncHandler(async (req, res, next) => {
 
     await ireport.remove();
     
-
-
     res.status(200).json({
         success: true,
         data: {}

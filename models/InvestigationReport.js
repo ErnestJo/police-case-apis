@@ -1,14 +1,6 @@
 const mongoose = require("mongoose");
 
 const investigationReportSchema = new mongoose.Schema({
-    remarks: {
-        type: String,
-        maxlength: [5000, 'Description can not be more than 5000 characters']
-    },
-    
-    court: {
-        type: String
-    },
 
     propertyStolen: {
         type: Boolean,
@@ -16,8 +8,7 @@ const investigationReportSchema = new mongoose.Schema({
     },
 
     ifStolenproperty: {
-        type: String,
-        
+        type: String,     
     },
 
     investigationOfficer: {
@@ -32,17 +23,14 @@ const investigationReportSchema = new mongoose.Schema({
     
     offence: {
         type: String,
-   
     },
 
     section: {
         type: String,
-               
     },
 
     chapter: {
-        type: String,
-    
+        type: String, 
     },
     
     photo: {
@@ -54,7 +42,15 @@ const investigationReportSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'case',
         required: true,
-      }
+    },
+    remarks: {
+        type: String,
+        maxlength: [5000, 'Description can not be more than 5000 characters']
+    },
+    court: {
+        type: String
+    }
+    
 
 });
 

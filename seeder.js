@@ -10,7 +10,7 @@ dotenv.config({ path: './config/config.env' });
 
 const Case = require('./models/Case');
 const Accuser = require('./models/Accuser');
-// const User = require('./models/User');
+const InvestigationReport = require('./models/InvestigationReport');
 // const Review = require('./models/Review');
 
 // Connect to DB
@@ -31,9 +31,9 @@ const accusers = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/accuser.json`, 'utf-8')
 );
 
-// const users = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
-// );
+const investigationReports = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/investigationReport.json`, 'utf-8')
+);
 
 // const reviews = JSON.parse(
 //   fs.readFileSync(`${__dirname}/_data/reviews.json`, 'utf-8')
@@ -44,7 +44,7 @@ const importData = async () => {
   try {
     await Case.create(cases);
     await Accuser.create(accusers)
-    // await User.create(users);
+    await InvestigationReport.create(investigationReports);
     // await Review.create(reviews);
     console.log('Data Imported...'.green.inverse);
     process.exit();
@@ -58,7 +58,7 @@ const deleteData = async () => {
   try {
     await Case.deleteMany();
     await Accuser.deleteMany();
-    // await User.deleteMany();
+    await InvestigationReport.deleteMany();
     // await Review.deleteMany();
     console.log('Data Destroyed...'.red.inverse);
     process.exit();
