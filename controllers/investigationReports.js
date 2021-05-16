@@ -13,6 +13,9 @@ const advancedResults = require('../middleware/advancedResults');
 // @route     GET /api/v1/case/:caseId/investigationReports
 // @access    not bublic
 exports.getIrs = asyncHandler(async (req, res, next) => {
+
+    // Add user to req,body
+     req.body.user = req.user.id;
     
     if (req.params.caseId) {
 

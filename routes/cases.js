@@ -25,14 +25,14 @@ router.use('/:caseId/investigationReports', investigationReportRouter);
 router.route('/')
     .get(advancedResults(Case, 'accuser'), getCases)
     .get(advancedResults(Case, 'investigationReport'), getCases)
-    .post(protect, authorize('publisher','admin'), createCase)
+    .post(protect, authorize('publisher', 'admin'), createCase)
     
    
      
 router
     .route('/:id')
     .get(getCase)
-    .put(protect, updateCase)
-    .delete(protect, deleteCase)
+    .put(protect, authorize('publisher', 'admin'), updateCase)
+    .delete(protect, authorize('publisher', 'admin'), deleteCase)
 
 module.exports = router;

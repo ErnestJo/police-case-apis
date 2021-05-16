@@ -49,7 +49,13 @@ const investigationReportSchema = new mongoose.Schema({
     },
     court: {
         type: String
-    }
+    },
+
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: true
+      },
     
 
 });

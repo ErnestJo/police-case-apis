@@ -14,18 +14,18 @@ const Accuser = require('../models/Accuser');
 
 const router = express.Router({ mergeParams: true });
 
-const { protect } = require('../middleware/auth');
+const { protect, authorize } = require('../middleware/auth');
 
 router.route('/')
     .get(advancedResults(Accuser, {
         path: 'case',
         select: 'name description'
     }),getAccusers)
-    .post(protect,addAccuser);
+    .post(protect, authorize('publisher', 'admin'), addAccuser);
 
 router.route('/:id')
     .get(getAccuser)
-    .put(protect, UpdateAccuser)
-    .delete(protect, deleteAccuser);
+    .put(protect, authorize('publisher', 'admin'), UpdateAccuser)
+    .delete(protect, authorize('publisher', 'admin'), deleteAccuser);
 
 module.exports = router;
