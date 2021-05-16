@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const colors = require('colors');
 //error handler
 const errorHandler = require('./middleware/error');
+const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db');
 
 
