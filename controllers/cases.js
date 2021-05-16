@@ -41,7 +41,14 @@ exports.getCase = asyncHandler(async (req, res, next) => {
 // @access    system Userscase
 exports.createCase = asyncHandler(async (req, res, next) => {
    
-        const cases = await Case.create(req.body);
+    // Add user to res.body
+    req.body.user = req.user.id;
+
+    // Check for opening case
+
+    const caseOpen = await Case.findOne({ user: req.user.id });
+
+    const cases = await Case.create(req.body);
 
     res.status(201).json({
         success: true,
