@@ -7,7 +7,8 @@ const { getCases,
 
 const Case = require('../models/Case');
 
-// advance search middleware 
+const { protect } = require('../middleware/auth');
+    // advance search middleware
 const advancedResults = require('../middleware/advancedResults');
 
 //include other resource routers
@@ -24,14 +25,14 @@ router.use('/:caseId/investigationReports', investigationReportRouter);
 router.route('/')
     .get(advancedResults(Case, 'accuser'), getCases)
     .get(advancedResults(Case, 'investigationReport'), getCases)
-    .post(createCase)
+    .post(protect, createCase)
     
    
      
 router
     .route('/:id')
     .get(getCase)
-    .put(updateCase)
-    .delete(deleteCase)
+    .put(protect, updateCase)
+    .delete(protect, deleteCase)
 
 module.exports = router;

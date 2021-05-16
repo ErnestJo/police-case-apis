@@ -1,0 +1,65 @@
+[
+
+    {
+              "_id": "609bbf8afc13ae4709000014",
+              "propertyStolen": true,
+              "ifStolenproperty": 14,
+              "investigationOfficer": "osuman kinje",
+              "categoryOfOffence": "robbery",
+              "offence": "robe",
+              "section": "12a",
+              "photo": "No-photo",
+              "remarks": "case closed he paid",
+              "court": "no case on court",
+              "case": "5d725a1b7b292f5f8ceff788"
+              
+          },
+          
+          
+          
+            {
+              "_id": "609bbf8afc13ae4709000015",
+               "propertyStolen": true,
+              "ifStolenproperty": 14,
+              "investigationOfficer": "Deo kipensi",
+              "categoryOfOffence": "robery",
+              "offence": "robe",
+              "section": "12a",
+              "photo": "No-photo",
+              "remarks": "case closed he paid",
+              "court": "not opened",
+              "case": "5d713a66ec8f2b88b8f830b8"
+              
+          },
+          
+          
+            {
+              "_id": "609bbf8afc13ae4709000016",
+              "propertyStolen": false ,
+              "ifStolenproperty": 14,
+              "investigationOfficer": "(111) 111-1111",
+              "categoryOfOffence": "robbery",
+              "offence": "robe",
+              "section": "12a",
+              "photo": "No-photo",
+              "remarks": "case closed he paid",
+              "court": "not opened",
+              "case": "5d725a037b292f5f8ceff787"
+              
+          },
+          
+          
+            {
+              "_id": "609bbf8afc13ae4709000017",
+              "propertyStolen": false,
+              "ifStolenproperty": 14,
+              "investigationOfficer": "(111) 111-1111",
+              "categoryOfOffence": "robbery",
+              "offence": "robe",
+              "section": "12a",
+              "photo": "No-photo",
+              "remarks": "case closed he paid",
+              "court": "not opened",
+              "case": "5d725a1b7b292f5f8ceff788"
+          }
+]
