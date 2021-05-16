@@ -25,7 +25,7 @@ router.use('/:caseId/investigationReports', investigationReportRouter);
 router.route('/')
     .get(advancedResults(Case, 'accuser'), getCases)
     .get(advancedResults(Case, 'investigationReport'), getCases)
-    .post(createCase)
+    .post(protect, createCase)
     
    
      
