@@ -84,7 +84,13 @@ const Accuser = require('./Accuser');
   
   finalDisposal: {
     type:String
-  },
+    },
+  
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: true
+    },
   },
     {
       toJSON: { virtuals: true }, 
@@ -124,6 +130,8 @@ CaseSchema.virtual('investigationReports', {
   foreignField: 'case',
   justOne: false
 });
+
+
 
 module.exports = mongoose.model('case', CaseSchema);
 
