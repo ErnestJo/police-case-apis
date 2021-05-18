@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'Please add a name'],
-    enum: ['staff Sergeant', 'Sergeant', 'Corprola', 'ASP'],
+    enum: ['staff Sergeant', 'Sergeant', 'Corprola', 'ASP', 'admin'],
   },
     
   email: {
