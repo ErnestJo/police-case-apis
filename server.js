@@ -7,6 +7,7 @@ const errorHandler = require('./middleware/error');
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet')
 
 //load env vars
 dotenv.config({ path: './config/config.env' });
@@ -38,6 +39,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // To remove data, use:
 app.use(mongoSanitize());
+
+//helemt
+app.use(helmet());
 
 //Mount router
 app.use('/api/v1/cases', cases);
