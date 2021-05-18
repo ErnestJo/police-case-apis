@@ -116,7 +116,6 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     data: user
   });
 });
-
 // @desc      Reset password
 // @route     PUT /api/v1/auth/resetpassword/:resettoken
 // @access    Public
@@ -138,13 +137,12 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 
   // Set new password
   user.password = req.body.password;
-  user.resetPasswordToken = undefined; 
+  user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
   await user.save();
 
   sendTokenResponse(user, 200, res);
 });
-
 
 // Get token from model, create cookie and send response
 const sendTokenResponse = (user, statusCode, res) => {
