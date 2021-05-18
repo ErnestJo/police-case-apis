@@ -20,7 +20,7 @@ const accusers = require('./routes/accusers');
 const investigationReports = require('./routes/investigationReports');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
-
+const reviews = require('./routes/reviews');
 
 const app = express();
   
@@ -42,6 +42,8 @@ app.use('/api/v1/accusers', accusers);
 app.use('/api/v1/investigationReports', investigationReports);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
+app.use('/api/v1/reviews', reviews);
+
 
 
 app.use(errorHandler);
