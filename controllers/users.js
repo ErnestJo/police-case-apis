@@ -45,4 +45,16 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
         success: true,
         data: user
       });
+});
+    
+// @desc      Delete user
+// @route     DELETE /api/v1/auth/users/:id
+// @access    Private/Admin
+exports.deleteUser = asyncHandler(async (req, res, next) => {
+    await User.findByIdAndDelete(req.params.id);
+  
+    res.status(200).json({
+      success: true,
+      data: {}
     });
+  });
