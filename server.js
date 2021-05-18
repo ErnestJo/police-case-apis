@@ -2,13 +2,13 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
-//error handler
 const errorHandler = require('./middleware/error');
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const xss = require('xss-clean');
+const cors = require('cors');
 
 //load env vars
 dotenv.config({ path: './config/config.env' });
@@ -46,6 +46,10 @@ app.use(helmet());
 
 // Prevent scripts tags
 app.use(xss());
+
+// enable cors
+app.use(cors());
+
 
 //Mount router
 app.use('/api/v1/cases', cases);
