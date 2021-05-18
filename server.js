@@ -6,7 +6,7 @@ const colors = require('colors');
 const errorHandler = require('./middleware/error');
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db');
-
+const mongoSanitize = require('express-mongo-sanitize');
 
 //load env vars
 dotenv.config({ path: './config/config.env' });
@@ -35,6 +35,9 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
+
+// To remove data, use:
+app.use(mongoSanitize());
 
 //Mount router
 app.use('/api/v1/cases', cases);
