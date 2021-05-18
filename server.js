@@ -2,11 +2,13 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
-//error handler
 const errorHandler = require('./middleware/error');
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db');
-
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const cors = require('cors');
 
 //load env vars
 dotenv.config({ path: './config/config.env' });
@@ -20,7 +22,7 @@ const accusers = require('./routes/accusers');
 const investigationReports = require('./routes/investigationReports');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
-
+const reviews = require('./routes/reviews');
 
 const app = express();
   
@@ -36,12 +38,27 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+// To remove data, use:
+app.use(mongoSanitize());
+
+//helemt security header
+app.use(helmet());
+
+// Prevent scripts tags
+app.use(xss());
+
+// enable cors
+app.use(cors());
+
+
 //Mount router
 app.use('/api/v1/cases', cases);
 app.use('/api/v1/accusers', accusers);
 app.use('/api/v1/investigationReports', investigationReports);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
+app.use('/api/v1/reviews', reviews);
+
 
 
 app.use(errorHandler);

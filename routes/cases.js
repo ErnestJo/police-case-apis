@@ -14,6 +14,7 @@ const advancedResults = require('../middleware/advancedResults');
 //include other resource routers
 const accuserRouter = require('./accusers');
 const investigationReportRouter = require('./investigationReports');
+const reviewRouter = require('./reviews');
 
 
 const router = express.Router();
@@ -21,6 +22,7 @@ const router = express.Router();
 // Reroute into other resource router
 router.use('/:caseId/accusers', accuserRouter);
 router.use('/:caseId/investigationReports', investigationReportRouter);
+router.use('/:caseId/reviews', reviewRouter);
 
 router.route('/')
     .get(advancedResults(Case, 'accuser'), getCases)
