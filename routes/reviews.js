@@ -18,7 +18,7 @@ router
   .route('/')
   .get(
     advancedResults(Review, {
-      path: 'bootcamp',
+      path: 'case',
       select: 'name description'
     }),
     getReviews
