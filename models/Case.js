@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 const Accuser = require('./Accuser');
+const numberGenerator = require("../utils/number_generator");
 
-  const CaseSchema = new mongoose.Schema({
+
+const CaseSchema = new mongoose.Schema({
+
+  caseNumber: {
+    type: String,
+  },
 
   name: {
     type: String,
@@ -102,6 +108,14 @@ CaseSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
 });
+CaseSchema.pre('save',async function (next) {
+  
+  console.log()
+  const countCase = parseInt((await mongoose.model('case', CaseSchema).find()).length) +1;
+  this.caseNumber = 'rb/'+countCase;
+  next()
+})
+mongoose.model('case', CaseSchema)
 
 // Cascade delete 
 CaseSchema.pre('remove', async function (next) {
