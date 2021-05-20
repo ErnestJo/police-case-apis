@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 const Accuser = require('./Accuser');
-const numberGenerator = require("../utils/number_generator");
+
 
 
 const CaseSchema = new mongoose.Schema({
