@@ -3,6 +3,7 @@ const slugify = require('slugify');
 const Accuser = require('./Accuser');
 
 
+
 const CaseSchema = new mongoose.Schema({
 
   caseNumber: {
