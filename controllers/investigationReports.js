@@ -15,7 +15,9 @@ const advancedResults = require('../middleware/advancedResults');
 exports.getIrs = asyncHandler(async (req, res, next) => {
 
     // Add user to req,body
-     req.body.user = req.user.id;
+
+
+    //  req.body.user = req.user.id;
     
     if (req.params.caseId) {
 
