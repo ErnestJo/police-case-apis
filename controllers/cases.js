@@ -75,32 +75,23 @@ exports.updateCase = asyncHandler(async (req, res, next) => {
     res.status(201).json({
         success: true,
         data: cas
-    }); 
-     
- 
+    });    
 });
 
 // @desc      delete case
 // @route     delete case/api/v1/cases/:id
 // @access    system Users
 exports.deleteCase = asyncHandler(async (req, res, next) => {
-      
         const cas = await Case.findById(req.params.id);
-    
-    
         if (!cas) {
             return next(
                 new ErrorResponse(`Case not found with id of ${req.params.id}`, 404)
             );
         }
-    
-    cas.remove();
-    
+       cas.remove();
         res.status(201).json({
             success: true,
             data: {}
         });
         
 });
-
-
