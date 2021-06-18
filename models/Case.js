@@ -3,7 +3,6 @@ const slugify = require('slugify');
 const Accuser = require('./Accuser');
 
 
-
 const CaseSchema = new mongoose.Schema({
 
   caseNumber: {
@@ -43,7 +42,7 @@ const CaseSchema = new mongoose.Schema({
 
   description: {
     type: String,
-    required: [true, 'Please add a description'],
+    required: [true, 'Please add a description']
     maxlength: [500, 'Description can not be more than 500 characters']
   },
 
