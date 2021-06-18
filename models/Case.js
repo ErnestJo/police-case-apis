@@ -87,6 +87,19 @@ const CaseSchema = new mongoose.Schema({
     type: String
   },
    
+  assignTo: {
+    type: String,
+  },
+
+  status: {
+    type: String,
+    enum: [
+      'waiting',
+      'Closed',
+      'Active',
+      'OnCourt',
+    ]
+  },
   
   finalDisposal: {
     type:String
@@ -109,7 +122,6 @@ CaseSchema.pre('save', function (next) {
   next();
 });
 CaseSchema.pre('save',async function (next) {
-  
   console.log()
   const countCase = parseInt((await mongoose.model('case', CaseSchema).find()).length) +1;
   this.caseNumber = 'rb/'+countCase;
