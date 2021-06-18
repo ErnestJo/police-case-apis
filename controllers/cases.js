@@ -26,14 +26,10 @@ exports.getCase = asyncHandler(async (req, res, next) => {
                 new ErrorResponse(`Case not found with id of ${req.params.id}`, 404)
             );
         }
-
     res.status(200).json({
         success: true,
-        data: cas,
-            
+        data: cas,     
     });
-    
-   
 });
 
 // @desc      create Cases
@@ -70,14 +66,12 @@ exports.updateCase = asyncHandler(async (req, res, next) => {
         runValidators: true
     });
 
-
     if (!cas) {
         return next(
             new ErrorResponse(`Case not found with id of ${req.params.id}`, 404)
         );
     }
 
-    
     res.status(201).json({
         success: true,
         data: cas
@@ -108,3 +102,5 @@ exports.deleteCase = asyncHandler(async (req, res, next) => {
         });
         
 });
+
+
