@@ -62,6 +62,10 @@ exports.getIr = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/case/:caseId/investigationReports
 // @access    not public
 exports.addIr = asyncHandler(async (req, res, next) => {
+
+    // Add user to req,body
+    req.body.user = req.user.id;
+
     req.body.case = req.params.caseId;
 
     const cas = await Case.findById(req.params.caseId)

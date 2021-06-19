@@ -70,7 +70,6 @@ exports.addAccuser = asyncHandler(async (req, res, next) => {
     const accuser = await Accuser.create(req.body);
     
 
-
     res.status(200).json({
         success: true,
         data: accuser

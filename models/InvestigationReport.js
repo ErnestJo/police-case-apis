@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const investigationReportSchema = new mongoose.Schema({
 
+    irNumber: {
+        type: String,
+      },
+
     propertyStolen: {
         type: Boolean,
         default: false
@@ -51,6 +55,12 @@ const investigationReportSchema = new mongoose.Schema({
         type: String
     },
 
+     
+    case: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'case',
+        required: true,
+    },
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User',
@@ -60,6 +70,13 @@ const investigationReportSchema = new mongoose.Schema({
 
 });
 
-
+investigationReportSchema.pre('save', async function (next) {
+    console.log()
+    const countir = parseInt((await mongoose.model('investigatonReport', investigationReportSchema).find()).length) +1;
+    const newNumber = countir + 0000;
+    this.irNumber = 'IR/'+newNumber;
+    next()
+});
+mongoose.model('investigatonReport', investigationReportSchema)
 
 module.exports = mongoose.model('InvestigationReport', investigationReportSchema);

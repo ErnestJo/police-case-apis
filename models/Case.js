@@ -114,13 +114,15 @@ const CaseSchema = new mongoose.Schema({
     {
       toJSON: { virtuals: true }, 
       toObject:{ virtuals: true }
-  });
+});
 
     // create a slug for slug name
-CaseSchema.pre('save', function (next) {
+ CaseSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
-});
+ });
+
+// count number case and create ir
 CaseSchema.pre('save',async function (next) {
   console.log()
   const countCase = parseInt((await mongoose.model('case', CaseSchema).find()).length) +1;
