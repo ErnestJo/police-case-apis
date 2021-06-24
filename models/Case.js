@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const { format } = require('morgan');
 const slugify = require('slugify');
 const Accuser = require('./Accuser');
+
 
 
 
@@ -72,6 +74,7 @@ const CaseSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  
   },
 
   immeadteAction: {
@@ -123,13 +126,15 @@ const CaseSchema = new mongoose.Schema({
  });
 
 // count number case and create ir
-CaseSchema.pre('save',async function (next) {
+CaseSchema.pre('save', async function (next) {
   console.log()
-  const countCase = parseInt((await mongoose.model('case', CaseSchema).find()).length) +1;
-  this.caseNumber = 'rb/'+countCase;
+  const countCase = parseInt((await mongoose.model('case', CaseSchema).find()).length) + 1;
+  this.caseNumber = 'rb/' + countCase;
   next()
-})
-mongoose.model('case', CaseSchema)
+});
+mongoose.model('case', CaseSchema);
+
+
 
 // Cascade delete 
 CaseSchema.pre('remove', async function (next) {

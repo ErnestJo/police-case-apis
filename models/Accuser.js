@@ -37,7 +37,24 @@ const accuserSchema = new mongoose.Schema({
     maxlength: [5000, 'Description can not be more than 5000 characters']
   },
    
-  properties: {
+  arrested: {
+    type: Boolean,
+    default: false
+  },
+
+  policeOfficerIncharge: {
+    type: String
+  },
+
+  nextOfkinName: {
+    type: String
+  },
+
+  nextOfkinRelatioinship: {
+    type: String
+  },
+
+  nextOfkinNumber: {
     type: String
   },
 
