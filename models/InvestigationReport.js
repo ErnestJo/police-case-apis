@@ -15,10 +15,6 @@ const investigationReportSchema = new mongoose.Schema({
         type: String,     
     },
 
-    investigationOfficer: {
-        type: String,
-        require: [true, 'Please add this field must be kujazwa']
-    },
 
     categoryOfOffence: {
         type: String,
@@ -41,7 +37,7 @@ const investigationReportSchema = new mongoose.Schema({
         type: String,
         default: 'no-photo.jpg'
       },
-
+    
     case: {
         type: mongoose.Schema.ObjectId,
         ref: 'case',
@@ -52,9 +48,16 @@ const investigationReportSchema = new mongoose.Schema({
         maxlength: [5000, 'Description can not be more than 5000 characters']
     },
     court: {
-        type: String
+        type: Boolean,
+        default: false
     },
 
+
+    description: {
+        type: String,
+        required: [true, 'Please add a description'],
+        maxlength: [500, 'Description can not be more than 500 characters']
+    },
      
     case: {
         type: mongoose.Schema.ObjectId,
