@@ -1,4 +1,5 @@
 const Case = require('../models/Case');
+const path = require('path');
 const InvestigationReport = require('../models/InvestigationReport');
 const accusers = require('../models/Accuser')
 const asyncHandler = require('../middleware/async');
@@ -142,10 +143,44 @@ exports.irPhotoUpload = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse(`No Investigation Report with such id of ${req.params.caseId}`), 404);
     }
 
-    if (!req.file) {
+    if (!req.files) {
         return next(
-            new ErrorResponse(`Please Uload a file`, 404)
+            new ErrorResponse(`Please Upload a file`, 404)
         )
     }
-
+    
+      const file = req.files.file;
+    
+      // Make sure the image is a photo
+      if (!file.mimetype.startsWith('image')) {
+        return next(new ErrorResponse(`Please upload an image file`, 400));
+      }
+    
+      // Check filesize
+      if (file.size > process.env.MAX_FILE_UPLOAD) {
+        return next(
+          new ErrorResponse(
+            `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`,
+            400
+          )
+        );
+      }
+    
+      // Create custom filename
+      file.name = `photo_${ireport._id}${path.parse(file.name).ext}`;
+    
+    console.log(file.name)
+    //   file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
+    //     if (err) {
+    //       console.error(err);
+    //       return next(new ErrorResponse(`Problem with file upload`, 500));
+    //     }
+    
+    //     await InvestigationReport.findByIdAndUpdate(req.params.id, { photo: file.name });
+    
+    //     res.status(200).json({
+    //       success: true,
+    //       data: file.name
+    //     });
+    //   });
 });
