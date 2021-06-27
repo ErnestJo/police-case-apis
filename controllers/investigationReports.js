@@ -128,3 +128,24 @@ exports.deleteIr = asyncHandler(async (req, res, next) => {
     });
 
 });
+
+
+
+// @desc      add photo    Ir
+// @route     PUT /api/v1/investigationReports/:id/photo
+// @access    not public
+exports.irPhotoUpload = asyncHandler(async (req, res, next) => {
+
+    const ireport = await InvestigationReport.findById(req.params.id)
+
+    if (!ireport) {
+        return next(new ErrorResponse(`No Investigation Report with such id of ${req.params.caseId}`), 404);
+    }
+
+    if (!req.file) {
+        return next(
+            new ErrorResponse(`Please Uload a file`, 404)
+        )
+    }
+
+});

@@ -5,7 +5,8 @@ const {
     getIr,
     addIr,
     UpdateIr,
-    deleteIr
+    deleteIr,
+    irPhotoUpload
 } = require('../controllers/investigationReports');
 const Case = require('../models/Case');
 
@@ -15,6 +16,8 @@ const InvestigationReport = require('../models/InvestigationReport');
 const router = express.Router({ mergeParams: true });
 
 const { protect, authorize } = require('../middleware/auth');
+
+router.route('/:id/photo').put(irPhotoUpload);
 
 router.route('/')
     .get(advancedResults(InvestigationReport, {
