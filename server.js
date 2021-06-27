@@ -6,7 +6,7 @@ const colors = require('colors');
 const errorHandler = require('./middleware/error');
 const cookieParser = require('cookie-parser')
 const connectDB = require('./config/db');
-const fileupload = require('express-fileupload'),
+const fileupload = require('express-fileupload');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -40,6 +40,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+
 // To remove data, use:
 app.use(mongoSanitize());
 
@@ -52,8 +53,12 @@ app.use(xss());
 // enable cors
 app.use(cors());
 
+//file uplaoding
+app.use(fileupload());
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 //Mount router
