@@ -75,8 +75,7 @@ const investigationReportSchema = new mongoose.Schema({
 investigationReportSchema.pre('save', async function (next) {
     console.log()
     const countir = parseInt((await mongoose.model('investigatonReport', investigationReportSchema).find()).length) +1;
-    const newNumber = countir + 0000;
-    this.irNumber = 'IR/'+newNumber;
+    this.irNumber = 'IR/'+countir;
     next()
 });
 mongoose.model('investigatonReport', investigationReportSchema)
