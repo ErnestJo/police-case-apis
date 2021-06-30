@@ -19,7 +19,6 @@ const accuserSchema = new mongoose.Schema({
   gender: {
     type: String,
     required: [true, 'Please add a Gender'],
-
   },
     
   occupation: {
