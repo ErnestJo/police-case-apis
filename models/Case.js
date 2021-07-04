@@ -89,7 +89,13 @@ const CaseSchema = new mongoose.Schema({
   policeOfficeTakingIntialAction: {
     type: String
   },
-   
+ 
+  
+  isAssigned: {
+    type: Boolean,
+    default: false
+  },
+
   assignTo: {
     type: String,
   },
@@ -97,7 +103,7 @@ const CaseSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: [
-      'waiting',
+      'Waiting',
       'Closed',
       'Active',
       'OnCourt',
