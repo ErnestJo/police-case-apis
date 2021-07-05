@@ -22,13 +22,13 @@ router.route('/:id/photo').put(irPhotoUpload);
 router.route('/')
     .get(advancedResults(InvestigationReport, {
         path: 'case',
-        select: 'name description'
+        select: 'caseNumber'
     }),getIrs)
-    .post(protect, authorize('publisher', 'admin'), addIr);
+    .post(protect, authorize('registra', 'OCCID','investigator','admin'), addIr);
 
 router.route('/:id')
     .get(getIr)
-    .put(protect, authorize('publisher', 'admin'), UpdateIr)
-    .delete(protect, authorize('publisher', 'admin'), deleteIr);
+    .put(protect, authorize('registra', 'OCCID','investigator','admin'), UpdateIr)
+    .delete(protect, authorize('registra', 'OCCID','investigator','admin'), deleteIr);
 
 module.exports = router;
