@@ -82,10 +82,12 @@ const CaseSchema = new mongoose.Schema({
     maxlength: [50, 'Name can not be more than 50 characters']
   },
   
-    arrested: {
+  arrested: {
         type: Boolean,
         default: false
   },
+
+  
   policeOfficeTakingIntialAction: {
     type: String
   },
@@ -102,12 +104,14 @@ const CaseSchema = new mongoose.Schema({
 
   status: {
     type: String,
+    default: 'Waiting',
     enum: [
       'Waiting',
       'Closed',
       'Active',
       'OnCourt',
     ]
+    
   },
   
   finalDisposal: {
