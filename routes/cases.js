@@ -27,14 +27,14 @@ router.use('/:caseId/reviews', reviewRouter);
 router.route('/')
     .get(advancedResults(Case, 'accuser'), getCases)
     .get(advancedResults(Case, 'investigationReport'), getCases)
-    .post(protect, authorize('publisher', 'admin'), createCase)
+    .post(protect, authorize('registra', 'OCCID','investigator','admin'), createCase)
     
    
      
 router
     .route('/:id')
     .get(getCase)
-    .put(protect, authorize('publisher', 'admin'), updateCase)
-    .delete(protect, authorize('publisher', 'admin'), deleteCase)
+    .put(protect, authorize('registra', 'OCCID','investigator','admin'), updateCase)
+    .delete(protect, authorize('registra', 'OCCID','investigator','admin'), deleteCase)
 
 module.exports = router;
