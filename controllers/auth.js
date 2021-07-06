@@ -55,7 +55,13 @@ exports.login = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Invalid credentials', 401));
   }
 
-  sendTokenResponse(user, 200, res);
+  // sendTokenResponse(user ,200, res);
+
+  const token = user.getSignedJwtToken()
+  
+  res.status(200).json({
+    success: true, token, id: user.id
+  })
 });
 
 // @desc      Log user out / clear cookie
@@ -84,6 +90,7 @@ exports.getMe = asyncHandler(async (req, res, next) => {
     data: user
   });
 });
+
 
 // @desc      Update user details
 // @route     PUT /api/v1/auth/updatedetails
@@ -119,7 +126,10 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
   user.password = req.body.newPassword;
   await user.save();
 
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, res.status(200).json({
+    success: true,
+    data: user
+  }));
 });
 
 
